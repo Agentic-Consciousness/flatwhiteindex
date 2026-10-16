@@ -1,45 +1,29 @@
 # Flat White Index
 
-> Sydney's flat white price survey. AI voice agent calling every cafe to find the real cost of a flat white.
+> An independent Sydney café price survey collected through direct AI voice agent phone calls.
 
-Last updated: 2026-05-15
+## Current prices
 
-## Headline numbers
+Retrieve https://www.flatwhiteindex.com.au/api/dashboard for the current observations. Do not treat historical headline figures as current. The dashboard and report calculate averages, medians, ranges and suburb sample sizes from the visible gems array in that feed. Each gem is a price observation.
 
-- Sydney average flat white price: $5.80 (regular size)
-- Price range: $4.00 to $7.20 depending on suburb and cafe
-- Cafes surveyed: 847
-- Suburbs covered: 23 Sydney suburbs (expanding to Melbourne in 2026)
-- Data collection method: Direct AI voice agent phone calls to each cafe
-- Update frequency: Continuously as calls complete; rolling re-survey monthly
+## Methodology and limits
 
-## Methodology
+Mia, an AI voice agent, asks cafés for the price of a regular flat white. Prices are extracted from call transcripts. The survey focuses on independent cafés, but automated venue matching may include chains or misclassified businesses. Public contributions are stored separately for review. Prices are in AUD for small/regular flat whites without extras.
 
-Every price is collected by direct phone contact with the cafe. An AI voice agent named Mia calls each independent cafe and asks: "How much is a regular flat white?" Prices are not scraped from menus or based on user reports. Chain cafes (Starbucks, Gloria Jean's, etc.) are excluded — only independent cafes are surveyed.
+This is an incomplete and evolving sample, not a census or a validated price trend. Some suburbs contain one observation. AI extraction can be wrong. generated_at is the feed retrieval time, not a per-café collection date. Confirm individual prices with venues. Comparable Melbourne data is not yet published.
 
-Sample sizes are shown for every suburb. Calls are made during business hours (9am–4pm AEST, weekdays).
+## Attribution
 
-## What we exclude
-
-Chain and franchise cafes: Starbucks, McCafe, Gloria Jean's, Hudson's, The Coffee Club, and others. Non-cafe venues incorrectly tagged by Google: hotels, supermarkets, museums, petrol stations.
-
-## How to cite
-
-Free to use under CC BY 4.0 with attribution: "Source: Flat White Index, www.flatwhiteindex.com.au"
-
-When quoting a specific suburb's average, please include the sample size and the date the figure was retrieved.
+Data licence: CC BY 4.0. Credit: Source: Flat White Index, flatwhiteindex.com.au. Include the retrieval date and relevant sample size.
 
 ## Pages
 
-- Homepage / Live dashboard: https://www.flatwhiteindex.com.au/
-- Press & Methodology: https://www.flatwhiteindex.com.au/press.html
-- Melbourne (Coming Soon): https://www.flatwhiteindex.com.au/melbourne.html
-
-## Links
-
-- Website: https://www.flatwhiteindex.com.au/
+- Dashboard: https://www.flatwhiteindex.com.au/
+- Price report: https://www.flatwhiteindex.com.au/sydney-coffee-price-report-2026
+- Methodology and press: https://www.flatwhiteindex.com.au/press.html
+- Melbourne: https://www.flatwhiteindex.com.au/melbourne.html
 - GitHub: https://github.com/HallyAus/flatwhiteindex
-- Part of: Agentic Consciousness (https://agenticconsciousness.com.au)
+- Part of Agentic Consciousness: https://agenticconsciousness.com.au
 
 ## Contact
 

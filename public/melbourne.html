@@ -1,237 +1,254 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-AU">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Melbourne Flat White Prices — Coming Soon | Flat White Index</title>
-<meta name="description" content="Melbourne coffee price survey launching soon. We'll call 3,000+ independent cafes to map flat white prices across every Melbourne suburb. Get notified.">
-<link rel="canonical" href="https://www.flatwhiteindex.com.au/melbourne.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Melbourne Flat White Prices — Coming Soon">
-<meta property="og:description" content="Melbourne coffee price survey launching soon. 3,000+ independent cafes to be called and mapped.">
-<meta property="og:url" content="https://www.flatwhiteindex.com.au/melbourne.html">
-<meta property="og:image" content="https://www.flatwhiteindex.com.au/og-image-1200x630.png">
-<meta property="og:locale" content="en_AU">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Melbourne Flat White Prices — Coming Soon">
-<meta name="twitter:description" content="Melbourne coffee price survey launching soon. 3,000+ independent cafes to be called and mapped.">
-<meta name="twitter:image" content="https://www.flatwhiteindex.com.au/og-image-1200x630.png">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'><rect width='28' height='28' rx='6' fill='%232C1A0E'/><path d='M5 8h14l-2 12H7L5 8z' fill='%23F7F3ED' opacity='0.9'/><path d='M19 10h2a3 3 0 0 1 0 6h-2' stroke='%23F7F3ED' stroke-width='1.5' fill='none'/></svg>">
-<link rel="stylesheet" href="fonts.css">
-<style>
-  :root {
-    --cream: #F7F3ED;
-    --espresso: #2C1A0E;
-    --roast: #6B3A1F;
-    --milk: #EDE8E0;
-    --foam: #FAF8F4;
-    --bronze: #8E5A28;
-    --bronze-light: #D4A26A;
-    --mid: #6B5840;
-    --text-muted: #6A5238;
-    --border: rgba(107, 58, 31, 0.18);
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--espresso);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .container {
-    max-width: 560px;
-    text-align: center;
-    padding: 3rem 2rem;
-  }
-
-  .cup { font-size: 4rem; margin-bottom: 1.5rem; }
-
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.02em;
-  }
-
-  .city {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    color: var(--bronze);
-    margin-bottom: 1.5rem;
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--mid);
-    margin-bottom: 1.5rem;
-  }
-
-  .notify-form {
-    display: flex;
-    gap: 0.5rem;
-    max-width: 400px;
-    margin: 0 auto 2rem;
-  }
-
-  .notify-form input {
-    flex: 1;
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--border);
-    background: var(--foam);
-    border-radius: 10px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    color: var(--espresso);
-  }
-
-  .notify-form input:focus {
-    outline: none;
-    border-color: var(--bronze);
-  }
-
-  .notify-form button {
-    padding: 0.75rem 1.5rem;
-    background: var(--espresso);
-    color: var(--cream);
-    border: none;
-    border-radius: 10px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: background 0.15s;
-  }
-
-  .notify-form button:hover { background: var(--roast); }
-
-  .success {
-    display: none;
-    color: #3A7D44;
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-  }
-
-  .back-link {
-    font-size: 0.85rem;
-    color: var(--bronze);
-    text-decoration: none;
-    padding: 0.5rem 0;
-    display: inline-block;
-  }
-
-  .back-link:hover { text-decoration: underline; }
-
-  .footer-muted {
-    margin-top: 2rem;
-    font-size: 0.72rem;
-    color: var(--text-muted);
-  }
-
-  .footer-muted a {
-    color: var(--bronze);
-    text-decoration: none;
-  }
-
-  @media (max-width: 480px) {
-    .notify-form { flex-direction: column; }
-    h1 { font-size: 1.8rem; }
-  }
-  .footer-muted a { padding: 0.35rem 0.25rem; display: inline-block; }
-  a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--bronze); outline-offset: 2px; }
-  .notify-btn { min-height: 44px; }
-  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
-</style>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Melbourne Flat White Prices — Coming Soon",
-  "description": "Melbourne coffee price survey launching soon. 3,000+ independent cafes to be called and mapped by suburb.",
-  "url": "https://www.flatwhiteindex.com.au/melbourne.html",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "Flat White Index",
-    "url": "https://www.flatwhiteindex.com.au"
-  },
-  "inLanguage": "en-AU"
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {"@type": "ListItem", "position": 1, "name": "Flat White Index", "item": "https://www.flatwhiteindex.com.au/"},
-    {"@type": "ListItem", "position": 2, "name": "Melbourne", "item": "https://www.flatwhiteindex.com.au/melbourne.html"}
-  ]
-}
-</script>
-
-<!-- Umami Analytics (self-hosted, cookie-free) -->
-<script defer src="https://analytics.agenticconsciousness.com.au/script.js" data-website-id="d35f6ff1-35d8-4c68-890d-5aa312d6039c"></script>
-<!-- PostHog analytics -->
-<script>
-!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug getPageviewId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-posthog.init('phc_AUTXvNZkCQVUVJjTEqMUzTkqLtz4iEQvvDQ4zsu3Hetw',{
-  api_host:'https://us.i.posthog.com',
-  person_profiles:'identified_only',
-  autocapture: true,
-  capture_pageview: true,
-  capture_pageleave: true,
-  capture_performance: true,
-  enable_heatmaps: true,
-  enable_recording_console_log: true,
-  session_recording: { recordCrossOriginIframes: true },
-  scroll_subbehavior: 'full',
-});
-</script>
-</head>
-<body>
-<main class="container">
-  <div class="cup" role="img" aria-label="Coffee cup">☕</div>
-  <h1>Flat White Index</h1>
-  <div class="city">Melbourne — Coming Soon</div>
-  <p>We're expanding south. Melbourne has over 3,000 independent cafes and arguably the best coffee culture in Australia. We'll be calling every one of them.</p>
-  <p>Want to know when Melbourne goes live?</p>
-  <form class="notify-form" onsubmit="notifyMe(event)">
-    <label for="melbEmail" style="display:none">Email address</label>
-    <input type="email" id="melbEmail" placeholder="your@email.com" required autocomplete="email">
-    <button type="submit">Notify me</button>
-  </form>
-  <div class="success" id="melbSuccess">You're on the list. We'll email you when Melbourne launches.</div>
-  <a href="/" class="back-link">← View live Sydney flat white prices by suburb</a>
-  <footer class="footer-muted">
-    Part of <a href="https://agenticconsciousness.com.au" target="_blank" rel="noopener">Agentic Consciousness</a>
-  </footer>
-</main>
-<script>
-function notifyMe(e) {
-  e.preventDefault();
-  const email = document.getElementById('melbEmail').value;
-  if (!email) return;
-  fetch('/api/subscribe', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, source: 'melbourne-notify' }),
-  }).then(() => {
-    document.querySelector('.notify-form').style.display = 'none';
-    document.getElementById('melbSuccess').style.display = 'block';
-  }).catch(() => {
-    document.getElementById('melbSuccess').textContent = 'Something went wrong — try again.';
-    document.getElementById('melbSuccess').style.display = 'block';
-    document.getElementById('melbSuccess').style.color = '#C0392B';
-  });
-}
-</script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Melbourne Coffee Prices — Coming Soon | Flat White Index</title>
+    <meta
+      name="description"
+      content="Melbourne is next on the Flat White Index. Join the list for launch updates. In the meantime, explore the independent Sydney café price survey."
+    />
+    <meta name="theme-color" content="#f7f5ef" />
+    <link
+      rel="canonical"
+      href="https://www.flatwhiteindex.com.au/melbourne.html"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Flat White Index" />
+    <meta
+      property="og:title"
+      content="Melbourne Coffee Prices — Coming Soon | Flat White Index"
+    />
+    <meta
+      property="og:description"
+      content="Melbourne is next on the Flat White Index. Join the list for launch updates. In the meantime, explore the independent Sydney café price survey."
+    />
+    <meta
+      property="og:url"
+      content="https://www.flatwhiteindex.com.au/melbourne.html"
+    />
+    <meta
+      property="og:image"
+      content="https://www.flatwhiteindex.com.au/og-editorial.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_AU" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Melbourne Coffee Prices — Coming Soon | Flat White Index"
+    />
+    <meta
+      name="twitter:description"
+      content="Melbourne is next on the Flat White Index. Join the list for launch updates. In the meantime, explore the independent Sydney café price survey."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.flatwhiteindex.com.au/og-editorial.png"
+    />
+    <link rel="icon" href="/brand.svg" />
+    <link
+      rel="preload"
+      href="/fonts/dm-sans-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/playfair-display-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/fonts.css" />
+    <link rel="stylesheet" href="/site.css?v=20261016" />
+    <script src="/analytics.js?v=20261016" defer></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Flat White Index",
+        "url": "https://www.flatwhiteindex.com.au/",
+        "description": "Independent Sydney flat white price survey, collected by direct phone calls."
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-head">
+      <div class="wrap head-inner">
+        <a class="brand" href="/" aria-label="Flat White Index home"
+          ><span class="brand-mark"
+            ><svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <path
+                d="M7 16h23l-2 10a8 8 0 0 1-8 6h-2a8 8 0 0 1-8-6L7 16Z"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+              <path
+                d="M30 18h2a4 4 0 0 1 0 8h-4M6 35h26M15 6v5m7-7v7m7-5v5"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              /></svg></span
+          ><span class="brand-name"
+            >Flat White Index<small
+              >A little perspective in every cup</small
+            ></span
+          ></a
+        ><button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="siteNav"
+        >
+          Menu <span aria-hidden="true">☰</span>
+        </button>
+        <nav class="nav" id="siteNav" aria-label="Main navigation">
+          <a href="/#explore">Explore prices</a
+          ><a href="/#rankings">Suburb index</a
+          ><a href="/press.html">Our methodology</a
+          ><a class="nav-cta" href="/#friday-pour"
+            >The Friday Pour <span aria-hidden="true">↗</span></a
+          >
+        </nav>
+      </div>
+    </header>
+    <main class="wrap" id="content">
+      <section class="city-hero">
+        <div>
+          <p class="eyebrow green">Next stop · Melbourne</p>
+          <h1>Good things<br />are brewing.</h1>
+          <p>
+            Melbourne, you’re on our radar. We’re planning to bring the same
+            independent café price survey south. Leave your email and we’ll keep
+            you posted.
+          </p>
+          <div class="city-form">
+            <form class="newsletter-form" data-subscribe="melbourne-notify">
+              <label class="sr-only" for="melbEmail">Email address</label
+              ><input
+                id="melbEmail"
+                type="email"
+                name="email"
+                required
+                maxlength="254"
+                autocomplete="email"
+                placeholder="Your email address"
+              /><button type="submit">Keep me posted ↗</button>
+            </form>
+            <p class="small muted" style="margin-top: 10px">
+              Coffee updates only. Unsubscribe any time.
+            </p>
+            <div class="form-status" role="status" aria-live="polite"></div>
+          </div>
+          <a class="text-link" href="/#explore"
+            >Explore Sydney in the meantime ↗</a
+          >
+        </div>
+        <div class="city-art" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <path
+              d="M7 16h23l-2 10a8 8 0 0 1-8 6h-2a8 8 0 0 1-8-6L7 16Z"
+              stroke="currentColor"
+              stroke-width="1.6"
+            />
+            <path
+              d="M30 18h2a4 4 0 0 1 0 8h-4M6 35h26M15 6v5m7-7v7m7-5v5"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+            /></svg
+          ><span>Melbourne, soon.</span>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="footer-top">
+          <div>
+            <a class="brand" href="/" aria-label="Flat White Index home"
+              ><span class="brand-mark"
+                ><svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                  <path
+                    d="M7 16h23l-2 10a8 8 0 0 1-8 6h-2a8 8 0 0 1-8-6L7 16Z"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                  />
+                  <path
+                    d="M30 18h2a4 4 0 0 1 0 8h-4M6 35h26M15 6v5m7-7v7m7-5v5"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  /></svg></span
+              ><span class="brand-name"
+                >Flat White Index<small
+                  >A little perspective in every cup</small
+                ></span
+              ></a
+            >
+            <p class="footer-description">
+              An independent look at the cost of your daily coffee. Made in
+              Sydney. Open to everyone.
+            </p>
+          </div>
+          <div class="footer-links">
+            <div>
+              <a href="/#explore">Explore Sydney prices</a
+              ><a href="/sydney-coffee-price-report-2026">Sydney price report</a
+              ><a href="/melbourne.html">Melbourne · coming soon</a>
+            </div>
+            <div>
+              <a href="/press.html">Methodology &amp; press</a
+              ><a href="/api/dashboard">Open data · JSON</a
+              ><a href="/llms.txt">Data for AI tools</a
+              ><a href="mailto:hello@flatwhiteindex.com.au">Get in touch ↗</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span
+            >© 2026 Flat White Index · Data
+            <a
+              href="https://creativecommons.org/licenses/by/4.0/"
+              target="_blank"
+              rel="noopener"
+              >CC BY 4.0</a
+            >
+            · Part of
+            <a
+              href="https://agenticconsciousness.com.au"
+              target="_blank"
+              rel="noopener"
+              >Agentic Consciousness ↗</a
+            ></span
+          ><span
+            >By
+            <a
+              href="https://www.linkedin.com/in/danielhallau/"
+              target="_blank"
+              rel="noopener"
+              >Daniel Hall</a
+            >,
+            <a
+              href="https://www.linkedin.com/in/richardkelsey/"
+              target="_blank"
+              rel="noopener"
+              >Richard Kelsey</a
+            >
+            &amp;
+            <a
+              href="https://www.linkedin.com/in/geoffhuens/"
+              target="_blank"
+              rel="noopener"
+              >Geoff Huens</a
+            ></span
+          >
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="/site.js?v=20261016"></script>
+  </body>
 </html>
