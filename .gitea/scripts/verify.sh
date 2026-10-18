@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 test "$GITHUB_SERVER_URL" = 'http://192.168.1.130:3000'
-test "$GITHUB_flatwhiteindexSITORY" = 'hallyaus/flatwhiteindex'
+test "$GITHUB_REPOSITORY" = 'hallyaus/flatwhiteindex'
 test "$GITHUB_REF" = 'refs/heads/master'
 test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
 node --input-type=module -e 'if (process.versions.node.split(".")[0] !== "24") throw Error("Use Node 24");'
