@@ -35,7 +35,7 @@ node index.js --suburb=sydney_cbd --batch-size=10  # live calls
 
 ## Deploy
 
-Production is **Vercel** (project `flatwhiteindex`, region `syd1`, Node24). Private VM300 Gitea is source of truth; master is production. VM301's personal runner replacement is initially manual and must pass before the existing Git build link is disconnected. Then push identical GitHub recovery, enable and prove the Gitea push route. Actions stay disabled. See AGENTS.md for the fixed personal team/project and release safeguards. The public apex currently redirects308 to www; www and the Vercel alias respond200 from Vercel. Old LXC/DNS handover statements are historical; do not touch Proxmox .99 or revive the retired runtime.
+Production is **Vercel** (project `flatwhiteindex`, region `syd1`, Node24). Private VM300 Gitea is source of truth; master is production. VM301 runner364 passed the complete manual replacement. Its Git build link is disconnected and identical GitHub recovery was verified inert. master pushes now use the same route; prove the first actual push before an automatic claim. Actions stay disabled. See AGENTS.md for the fixed personal target and release/cron safeguards. The public apex redirects308 to www; www and the Vercel alias respond200 from Vercel. Old LXC/DNS handover statements are historical; do not touch Proxmox .99 or revive the retired runtime.
 
 ## Key Rules
 

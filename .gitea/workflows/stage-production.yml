@@ -2,6 +2,8 @@ name: Flat White Index staged production
 # Validate exact VM300 source, accept the protected stage, then promote that build.
 on:
   workflow_dispatch:
+  push:
+    branches: [master]
 env:
   VERCEL_ORG_ID: team_xyQ79UW6Bz7wt6O8KsL2NuRO
   VERCEL_PROJECT_ID: prj_Y3gIgq8bSrJ60hjhxDJs28yw63gP

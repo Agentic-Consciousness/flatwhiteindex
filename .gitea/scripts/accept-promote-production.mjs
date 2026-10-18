@@ -37,13 +37,7 @@ function checkedProject() {
   assert.equal(p.name, 'flatwhiteindex');
   assert.equal(p.accountId, team);
   assert.equal(p.nodeVersion, '24.x');
-  if (p.link) {
-    // Initial manual cutover retains the exact working recovery link until this route passes.
-    assert.equal(process.env.GITHUB_EVENT_NAME, 'workflow_dispatch');
-    assert.equal(p.link.type, 'github'); assert.equal(p.link.org, 'HallyAus');
-    assert.equal(p.link.repo, 'flatwhiteindex'); assert.equal(p.link.repoId, 1191498679);
-    assert.equal(p.link.productionBranch, 'master');
-  }
+  assert.equal(p.link ?? null, null, 'GitHub recovery must not retain a deployment trigger');
   assert.equal(p.crons?.disabledAt, null, 'Preserve enabled production schedules');
   assert.deepEqual(p.crons?.definitions.map(({path,schedule})=>({path,schedule})), [{"path": "/api/cron/dispatch", "schedule": "*/15 23 * * 1-5"}, {"path": "/api/cron/dispatch", "schedule": "*/15 0-5 * * 1-5"}], 'Preserve existing scheduled production routes');
   return p;
@@ -64,6 +58,7 @@ const previous = checkedProject().targets.production.id;
 assert.match(previous, /^dpl_[A-Za-z0-9]+$/);
 assert.notEqual(previous, id);
 console.log(`Exact Gitea source verified: ${sha}; staged ${id}; rollback ${previous}`);
+assert.equal(checkedProject().crons.deploymentId, previous, 'Scheduled calls must stay on accepted production until promotion');
 
 async function requireCurrentSource() {
   assert.ok(process.env.SOURCE_TOKEN, 'Repository job token is required for the release source guard');

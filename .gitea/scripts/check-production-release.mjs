@@ -77,7 +77,7 @@ async function exercise(fault) {
   return {failed,promotions,serving,requests};
 }
 
-const initial=await exercise('initial-cutover'); assert.equal(initial.failed,false); assert.deepEqual(initial.promotions,[next]);
+const initial=await exercise('initial-cutover'); assert.equal(initial.failed,true); assert.deepEqual(initial.promotions,[]);
 const success=await exercise('none');
 assert.equal(success.failed,false);
 assert.deepEqual(success.promotions,[next]);
