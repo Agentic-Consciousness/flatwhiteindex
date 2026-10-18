@@ -1,0 +1,119 @@
+name: Flat White Index staged production
+# Validate exact VM300 source, accept the protected stage, then promote that build.
+on:
+  workflow_dispatch:
+env:
+  VERCEL_ORG_ID: team_xyQ79UW6Bz7wt6O8KsL2NuRO
+  VERCEL_PROJECT_ID: prj_Y3gIgq8bSrJ60hjhxDJs28yw63gP
+  VERCEL_CLI_VERSION: 54.18.0
+jobs:
+  verify:
+    runs-on: personal-ubuntu
+    timeout-minutes: 45
+    steps:
+      - name: Check out the exact VM300 commit
+        env:
+          SOURCE_TOKEN: ${{ secrets.GITEA_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_SERVER_URL" = 'http://192.168.1.130:3000'
+          test "$GITHUB_REPOSITORY" = 'hallyaus/flatwhiteindex'
+          test "$GITHUB_REF" = 'refs/heads/master'
+          test -n "${SOURCE_TOKEN:?Gitea job token is required}"
+          [[ "$GITHUB_SHA" =~ ^[0-9a-f]{40}$ ]]
+          credential_helper_path="$(mktemp "${RUNNER_TEMP:-/tmp}/personal-git-askpass.XXXXXX")"
+          trap 'rm -f "$credential_helper_path"' EXIT
+          cat > "$credential_helper_path" <<'ASKPASS'
+          #!/bin/sh
+          case "$1" in
+            *Username*) printf '%s\n' 'x-access-token' ;;
+            *Password*) printf '%s\n' "$SOURCE_TOKEN" ;;
+            *) exit 1 ;;
+          esac
+          ASKPASS
+          chmod 700 "$credential_helper_path"
+          export GIT_ASKPASS="$credential_helper_path" GIT_TERMINAL_PROMPT=0
+          git init .
+          git remote add origin "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY.git"
+          git -c credential.helper= fetch --no-tags --depth=1 origin "$GITHUB_SHA"
+          git checkout --detach FETCH_HEAD
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+      - name: Required checks without cloud credentials
+        run: bash .gitea/scripts/verify.sh
+  stage:
+    needs: verify
+    runs-on: personal-ubuntu
+    timeout-minutes: 45
+    steps:
+      - name: Check out the same verified VM300 commit
+        env:
+          SOURCE_TOKEN: ${{ secrets.GITEA_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_SERVER_URL" = 'http://192.168.1.130:3000'
+          test "$GITHUB_REPOSITORY" = 'hallyaus/flatwhiteindex'
+          test "$GITHUB_REF" = 'refs/heads/master'
+          test -n "${SOURCE_TOKEN:?Gitea job token is required}"
+          [[ "$GITHUB_SHA" =~ ^[0-9a-f]{40}$ ]]
+          credential_helper_path="$(mktemp "${RUNNER_TEMP:-/tmp}/personal-git-askpass.XXXXXX")"
+          trap 'rm -f "$credential_helper_path"' EXIT
+          cat > "$credential_helper_path" <<'ASKPASS'
+          #!/bin/sh
+          case "$1" in
+            *Username*) printf '%s\n' 'x-access-token' ;;
+            *Password*) printf '%s\n' "$SOURCE_TOKEN" ;;
+            *) exit 1 ;;
+          esac
+          ASKPASS
+          chmod 700 "$credential_helper_path"
+          export GIT_ASKPASS="$credential_helper_path" GIT_TERMINAL_PROMPT=0
+          git init .
+          git remote add origin "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY.git"
+          git -c credential.helper= fetch --no-tags --depth=1 origin "$GITHUB_SHA"
+          git checkout --detach FETCH_HEAD
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+      - name: Install the pinned tools without deployment credentials
+        run: |
+          set -euo pipefail
+          node --input-type=module -e 'if (process.versions.node.split(".")[0] !== "24") throw Error("Use Node 24");'
+          npm ci
+          npm install --global "vercel@$VERCEL_CLI_VERSION"
+      - name: Verify the exact personal target and pull Production settings
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${VERCEL_TOKEN:?Set VERCEL_TOKEN in this personal repository Actions secrets}"
+          vercel project inspect flatwhiteindex --scope "$VERCEL_ORG_ID" --non-interactive
+          vercel api "/v9/projects/$VERCEL_PROJECT_ID?teamId=$VERCEL_ORG_ID" --raw |
+            node --input-type=module -e 'import assert from "node:assert/strict"; import { readFileSync } from "node:fs"; const p=JSON.parse(readFileSync(0,"utf8")); assert.equal(p.id,process.env.VERCEL_PROJECT_ID); assert.equal(p.name,"flatwhiteindex"); assert.equal(p.accountId,process.env.VERCEL_ORG_ID); console.log("Verified Flat White Index personal Vercel project");'
+          vercel pull --yes --environment=production --scope "$VERCEL_ORG_ID" --non-interactive
+      - name: Build the staged Production output without the deployment token
+        shell: bash
+        run: |
+          set -euo pipefail
+          unset VERCEL_TOKEN
+          vercel build --prod --scope "$VERCEL_ORG_ID" --non-interactive
+      - name: Stage the verified Production build without assigning domains
+        id: staged
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          vercel deploy --format=json --prebuilt --prod --skip-domain --yes --scope "$VERCEL_ORG_ID" --non-interactive --meta "giteaCommitSha=$GITHUB_SHA" --meta "giteaRepository=$GITHUB_REPOSITORY" --meta 'source=vm300-gitea' |
+            node .gitea/scripts/capture-staged-deployment.mjs
+          printf 'Verified source commit: %s\n' "$GITHUB_SHA"
+      - name: Accept the protected stage, promote the same build and verify public production
+        env:
+          SOURCE_TOKEN: ${{ secrets.GITEA_TOKEN }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          DEPLOYMENT_URL: ${{ steps.staged.outputs.url }}
+        run: node .gitea/scripts/accept-promote-production.mjs
+      - name: Remove generated Production settings and build output
+        if: always()
+        run: node .gitea/scripts/cleanup-vercel.mjs

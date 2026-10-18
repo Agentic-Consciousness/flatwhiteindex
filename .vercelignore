@@ -16,3 +16,12 @@ caller-twilio.js
 caller-bland.js
 webhook.js
 index.js
+.git
+.github
+.gitea
+.vercel
+.env*
+node_modules
+*.tsbuildinfo
+coverage
+*.log

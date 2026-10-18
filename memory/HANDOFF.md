@@ -1,5 +1,9 @@
 # Session Handoff
 
+## Current source/deployment migration (18 October 2026)
+
+Private VM300 Gitea hallyaus/flatwhiteindex is authoritative, GitHub recovery only with Actions disabled. The personal VM301 manual replacement is being verified before disconnecting the exact existing Vercel Git link and proving push deployment. Read AGENTS.md; repository-only VERCEL_TOKEN is configured. Current metadata matches master source 0b64abf to existing serving deployment dpl_8rfQ6JA6sPQdue7QAkoFygtii9t1. Public apex308 to www, www200 and flatwhiteindex-delta.vercel.app200 respond from Vercel; old DNS/LXC blockers below are historical, not instructions to change infrastructure. Preserve the existing two dispatch schedules and provider/database configuration. No live voice, dispatch, email, discovery or admin tests are authorized by this migration. Never use Proxmox .99.
+
 > Bridge between Claude Code sessions. Updated at the end of every session.
 > The SessionStart hook auto-injects this into context.
 
