@@ -1,6 +1,12 @@
-# Flat White Index source and production
+## GitHub source control and self-hosted runner (current policy, 2026-10-22)
 
-Read CLAUDE.md before changes. Private hallyaus/flatwhiteindex on VM300 (.130:3000,SSH2222) is source of truth; master is production. Preserve local work. Push Gitea first, then identical GitHub recovery only after its provider Git link is disconnected. Actions stay disabled. M4T/employer resources are excluded.
+- **Canonical repository:** `https://github.com/HallyAus/flatwhiteindex`. GitHub is the source of truth. Commit, push, open pull requests and publish tags/releases to GitHub; do not publish to former Git servers or maintain a secondary recovery mirror.
+- **Branch and remote:** Use the repository's current GitHub default/production branch, verify `git remote -v` before pushing, preserve uncommitted work and never force-push over newer commits.
+- **CI/CD:** A self-hosted GitHub Actions runner is available. Prefer it for eligible jobs when the repository has a configured workflow; use the exact runner labels verified in repository settings or existing workflows. Do not assume the runner's OS, permissions, online status or available secrets, and do not expose credentials to untrusted contributions.
+- **Validation and deployment:** Keep the project's existing tests, security checks, branch protections, release approvals, staging/acceptance and production verification. A GitHub push or green build is not proof of production deployment. Do not silently enable or bypass deployment triggers, and never infer that Vercel, Proxmox or another target deploys automatically.
+- **Precedence:** This section overrides older hosting, mirror, disabled-Actions and publishing instructions elsewhere in this file. Preserve non-hosting project-specific safety rules.
+
+# Flat White Index source and production
 
 Existing personal Vercel project prj_Y3gIgq8bSrJ60hjhxDJs28yw63gP (flatwhiteindex), team_xyQ79UW6Bz7wt6O8KsL2NuRO, Node.js 22.x, syd1. The personal-ubuntu release runner still executes the CLI on Node 24. Use VM301 personal-ubuntu capacity one and this repository's VERCEL_TOKEN only. No user/org/instance secrets.
 
