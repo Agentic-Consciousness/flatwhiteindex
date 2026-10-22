@@ -42,7 +42,7 @@ node index.js --suburb=sydney_cbd --batch-size=10  # live calls
 
 ## Deploy
 
-Source control now uses GitHub; CI uses the configured self-hosted GitHub Actions runner. Preserve existing deployment safeguards and verify current release setup.
+Production is **Vercel** (project `flatwhiteindex`, region `syd1`, Node.js 22.x). GitHub `HallyAus/flatwhiteindex` master is canonical and production. Preserve the verified source validation, manual release acceptance and same-ID promotion; use the current configured self-hosted workflow only after confirming its deployment integration.
 
 ## Key Rules
 
