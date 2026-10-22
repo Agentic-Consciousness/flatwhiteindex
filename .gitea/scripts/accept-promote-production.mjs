@@ -36,7 +36,7 @@ function checkedProject() {
   assert.equal(p.id, project);
   assert.equal(p.name, 'flatwhiteindex');
   assert.equal(p.accountId, team);
-  assert.equal(p.nodeVersion, '24.x');
+  assert.equal(p.nodeVersion, '22.x');
   assert.equal(p.link ?? null, null, 'GitHub recovery must not retain a deployment trigger');
   assert.equal(p.crons?.disabledAt, null, 'Preserve enabled production schedules');
   assert.deepEqual(p.crons?.definitions.map(({path,schedule})=>({path,schedule})), [{"path": "/api/cron/dispatch", "schedule": "*/15 23 * * 1-5"}, {"path": "/api/cron/dispatch", "schedule": "*/15 0-5 * * 1-5"}], 'Preserve existing scheduled production routes');
