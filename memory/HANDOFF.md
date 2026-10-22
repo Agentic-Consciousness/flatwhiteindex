@@ -1,8 +1,12 @@
+## Current agent handoff: GitHub and self-hosted runner (2026-10-22)
+
+GitHub `https://github.com/HallyAus/flatwhiteindex` is the canonical repository and the destination for all new commits and release changes. CI/CD uses GitHub Actions with the configured self-hosted runner when the applicable workflow is present. Verify runner labels, remote, branch and release/deployment trigger before acting. Preserve the application's existing production validation, provider settings, secret controls and rollback; a push alone does not prove deployment. Earlier source-control or mirror instructions in this historical handoff are superseded.
+
 # Session Handoff
 
 ## Current source/deployment migration (18 October 2026)
 
-Private VM300 Gitea hallyaus/flatwhiteindex is authoritative, GitHub recovery only with Actions disabled. The personal VM301 manual replacement is being verified before disconnecting the exact existing Vercel Git link and proving push deployment. Read AGENTS.md; repository-only VERCEL_TOKEN is configured. Current metadata matches master source 0b64abf to existing serving deployment dpl_8rfQ6JA6sPQdue7QAkoFygtii9t1. Public apex308 to www, www200 and flatwhiteindex-delta.vercel.app200 respond from Vercel; old DNS/LXC blockers below are historical, not instructions to change infrastructure. Preserve the existing two dispatch schedules and provider/database configuration. No live voice, dispatch, email, discovery or admin tests are authorized by this migration. Never use Proxmox .99.
+GitHub HallyAus/flatwhiteindex is authoritative, with the configured self-hosted GitHub Actions runner. The personal VM301 manual replacement is being verified before disconnecting the exact existing Vercel Git link and proving push deployment. Read AGENTS.md; repository-only VERCEL_TOKEN is configured. Current metadata matches master source 0b64abf to existing serving deployment dpl_8rfQ6JA6sPQdue7QAkoFygtii9t1. Public apex308 to www, www200 and flatwhiteindex-delta.vercel.app200 respond from Vercel; old DNS/LXC blockers below are historical, not instructions to change infrastructure. Preserve the existing two dispatch schedules and provider/database configuration. No live voice, dispatch, email, discovery or admin tests are authorized by this migration. Never use Proxmox .99.
 
 > Bridge between Claude Code sessions. Updated at the end of every session.
 > The SessionStart hook auto-injects this into context.
