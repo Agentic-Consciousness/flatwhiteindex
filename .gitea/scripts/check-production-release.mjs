@@ -46,7 +46,7 @@ async function exercise(fault) {
         ownerId:team,url:'flatwhiteindex-test.vercel.app',regions:fault==='wrong-region'?['iad1']:['syd1'],
         meta:{giteaCommitSha:fault==='wrong-sha'?'b'.repeat(40):sha,giteaRepository:'hallyaus/flatwhiteindex',source:'vm300-gitea'},
       });
-      if(args[1].startsWith('/v9/projects/')) return response({id:project,name:'flatwhiteindex',accountId:team,nodeVersion:'24.x',crons:{disabledAt:null,deploymentId:serving,definitions:[{"path": "/api/cron/dispatch", "schedule": "*/15 23 * * 1-5"}, {"path": "/api/cron/dispatch", "schedule": "*/15 0-5 * * 1-5"}]},link:fault==='github-trigger'?{}:fault==='initial-cutover'?{type:'github',org:'HallyAus',repo:'flatwhiteindex',repoId:1191498679,productionBranch:'master'}:null,targets:{production:{id:serving}}});
+      if(args[1].startsWith('/v9/projects/')) return response({id:project,name:'flatwhiteindex',accountId:team,nodeVersion:'22.x',crons:{disabledAt:null,deploymentId:serving,definitions:[{"path": "/api/cron/dispatch", "schedule": "*/15 23 * * 1-5"}, {"path": "/api/cron/dispatch", "schedule": "*/15 0-5 * * 1-5"}]},link:fault==='github-trigger'?{}:fault==='initial-cutover'?{type:'github',org:'HallyAus',repo:'flatwhiteindex',repoId:1191498679,productionBranch:'master'}:null,targets:{production:{id:serving}}});
       if(args[1].startsWith('/v4/aliases?')) return response({aliases:aliases.map(alias=>({alias,deploymentId:serving}))});
     }
     if(args[0]==='curl') {

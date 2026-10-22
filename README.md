@@ -13,7 +13,7 @@ AI voice agent that calls Sydney cafes to find out how much a flat white costs, 
 
 ## Stack
 
-- **Node.js 20+ (ESM)** — orchestrator, Express webhook server, admin portal
+- **Node.js >=22.23.4 <23 (ESM)** — orchestrator, Express webhook server, admin portal
 - **ElevenLabs Conversational AI** — primary voice provider (Twilio + Bland.ai supported as fallbacks)
 - **Supabase / PostgreSQL** — datastore
 - **WebAuthn (passkeys)** — admin authentication
