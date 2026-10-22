@@ -1,0 +1,39 @@
+name: Verify
+
+# The same checks the Gitea pipeline ran before a deploy, on the personal runner pool.
+# Off until the repository is in the Agentic-Consciousness organisation and the organisation variable
+# PERSONAL_GITHUB_CI_ENABLED is 'true' (personal-account repositories cannot use organisation runners,
+# so the job is skipped rather than left waiting for a runner that will never take it).
+on:
+  pull_request:
+    branches: [master]
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: verify-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    # Pull requests from forks never run on the self-hosted runners (this repository is public).
+    if: ${{ vars.PERSONAL_GITHUB_CI_ENABLED == 'true' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
+    name: Verify
+    runs-on: [personal-official]
+    container:
+      image: node:24-bookworm
+      options: --init --cpus 2 --memory 4g
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v4
+        with:
+          persist-credentials: false
+      - name: Trust the checked-out workspace
+        # The job container's user differs from the checkout's owner, so git refuses to read it otherwise.
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Run the checks
+        run: bash .github/scripts/verify.sh
