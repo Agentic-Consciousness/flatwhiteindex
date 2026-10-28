@@ -37,3 +37,35 @@ jobs:
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Run the checks
         run: bash .github/scripts/verify.sh
+
+  # Frozen-lockfile install + production build. Not a required check;
+  # making it required is a separate branch-protection decision for Daniel.
+  build:
+    if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/master')
+    runs-on: [personal-official]
+    container:
+      image: node:24-bookworm
+      options: --init --cpus 2 --memory 6g
+    timeout-minutes: 60
+    env:
+      CI: '1'
+      NEXT_TELEMETRY_DISABLED: '1'
+      # Safe CI fixtures only — no real secrets.
+      DATABASE_URL: postgresql://ci:ci@127.0.0.1:9/ci
+      DIRECT_URL: postgresql://ci:ci@127.0.0.1:9/ci
+      NEXTAUTH_SECRET: ci-only-fixture-at-least-thirty-two-characters
+      NEXTAUTH_URL: http://127.0.0.1:3000
+      NEXT_PUBLIC_APP_URL: http://127.0.0.1:3000
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v4
+        with:
+          persist-credentials: false
+      - name: Trust the checked-out workspace
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Frozen install and build
+        shell: bash
+        run: |
+          set -euo pipefail
+          unset VERCEL_ENV VERCEL VERCEL_TOKEN || true
+          npm ci
+          npm run build
