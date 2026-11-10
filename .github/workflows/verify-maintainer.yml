@@ -1,0 +1,35 @@
+name: Verify (maintainer)
+
+# Push and workflow_dispatch require write access, so outsiders cannot trigger
+# this workflow. Personal-account repositories cannot use organisation runners;
+# skip the job instead of leaving it queued when the runner is unavailable.
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: verify-maintainer-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    if: ${{ vars.PERSONAL_GITHUB_CI_ENABLED == 'true' }}
+    name: Verify (maintainer)
+    runs-on: [personal-official]
+    container:
+      image: node:24-bookworm
+      options: --init --cpus 2 --memory 4g
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Trust the checked-out workspace
+        # The job container's user differs from the checkout's owner, so git refuses to read it otherwise.
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Run the checks
+        run: bash .github/scripts/verify.sh
