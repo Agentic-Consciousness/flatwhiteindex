@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: [master]
 
+# checkout needs contents read. setup-node's npm cache needs actions write;
+# every other token scope stays closed.
+permissions:
+  contents: read
+  actions: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
