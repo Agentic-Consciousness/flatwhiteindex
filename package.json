@@ -27,13 +27,13 @@
   },
   "dependencies": {
     "@simplewebauthn/server": "^13.3.3",
-    "@supabase/supabase-js": "^2.118.0",
+    "@supabase/supabase-js": "^2.119.0",
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.4.0",
     "express": "^4.21.0",
-    "resend": "^6.34.1",
+    "resend": "^6.37.0",
     "twilio": "^5.4.0",
-    "ws": "^8.18.0"
+    "ws": "^8.22.1"
   },
   "devDependencies": {
     "sharp": "^0.35.5"
